@@ -1,15 +1,21 @@
-import React from "react"; // Importing the React library
+import React, { useContext } from 'react';
+import { TodoContext } from './TodoContext';
+import { Link } from 'react-router-dom';
 
-// Defining the Home component
-function Home() {
+const Home = () => {
+  const { todos } = useContext(TodoContext);
+
   return (
     <div>
-      {/* Main container div for the Home component */}
-      <h1>Welcome to AOU TFC React Development Bootcamp</h1>{" "}
-      {/* Displaying a welcome message */}
+      <h1>Todo List</h1>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+      <Link to="/add">Add Todo</Link>
     </div>
   );
-}
+};
 
-// Exporting the Home component as the default export
 export default Home;
